@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [products, setProducts] = useState([]);
+	useEffect(() => {
+	  const fetchData = async () => {
+		const result = await axios.get('/api/products');
+		setProducts(result.data);
+	  };
+	  fetchData();
+}, []);
+	 console.log(products);
+	return (
+		<>
+			<h1>This is React WebApp </h1>
+			 
+		</>
+	);
 }
 
 export default App;
